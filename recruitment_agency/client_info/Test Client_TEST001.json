@@ -1,0 +1,9 @@
+{
+  "client_name": "Test Client",
+  "client_id": "TEST001",
+  "job_title": "Test Position",
+  "company": "Test Company",
+  "application_link": "https://example.com",
+  "application_date": "2025-01-14",
+  "status": "applied"
+}

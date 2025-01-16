@@ -1,0 +1,12 @@
+{
+    "client_name": "Test Client",
+    "job_id": "TEST001",
+    "application_status": "submitted",
+    "notes": "Test application\n[2025-01-14 12:40:55] Application submitted via website",
+    "timestamp": "2025-01-14 12:40:55",
+    "documents": {
+        "resume": "",
+        "cover_letter": "",
+        "other_materials": []
+    }
+}

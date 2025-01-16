@@ -1,0 +1,56 @@
+{
+    "name": "Luke Lappala",
+    "email": "lukelappala@gmail.com",
+    "resumes": {
+        "internal_communications": {
+            "template": "LUKE LAPPALA\nSeattle, WA 98109 | 206-313-7520 | lukelappala@gmail.com | www.linkedin.com/in/luke-lappala\n\n\nDIRECTOR OF COMMUNICATIONS | INTERNAL COMMUNICATIONS STRATEGIST...",
+            "focus": [
+                "internal communications",
+                "employee engagement",
+                "internal communications strategist",
+                "employee communications",
+                "corporate communications",
+                "change communications",
+                "executive communications",
+                "internal events",
+                "employee alignment",
+                "company culture",
+                "organizational communication"
+            ]
+        },
+        "external_communications": {
+            "template": "LUKE LAPPALA\nSeattle, WA 98109 | 206-313-7520 | lukelappala@gmail.com | www.linkedin.com/in/luke-lappala\n\n\nDIRECTOR OF COMMUNICATIONS | MEDIA RELATIONS STRATEGIST...",
+            "focus": [
+                "public relations",
+                "media relations",
+                "external communications",
+                "PR manager",
+                "communications specialist",
+                "media strategy",
+                "press relations",
+                "publicity",
+                "brand communications",
+                "thought leadership",
+                "executive communications",
+                "media outreach"
+            ]
+        }
+    },
+    "cover_letter": "Dear [Company Name],\n\nI am writing to express my strong interest...",
+    "preferences": {
+        "role_types": [
+            "internal communications",
+            "corporate communications",
+            "public relations",
+            "media relations"
+        ],
+        "location_preference": "Seattle, WA",
+        "remote_preference": true,
+        "industries": [
+            "technology",
+            "healthcare",
+            "nonprofit",
+            "media"
+        ]
+    }
+}

@@ -1,0 +1,11 @@
+[build-system]
+requires = ["setuptools>=42", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "recruitment_agency_new"
+version = "0.1"
+dependencies = [
+    "agency-swarm",
+    "python-dotenv"
+] 

@@ -1,0 +1,248 @@
+[
+    {
+        "id": "asst_oKKzTGgf7MAaYGzulOyurye2",
+        "created_at": 1736888676,
+        "description": "Searches and analyzes job opportunities matching client profiles",
+        "instructions": "agency_manifesto.md\n\n# Job Prospector Role\n\nThe Job Prospector is responsible for finding and analyzing job opportunities that match the candidate's skills and preferences.\n\n# Goals\n\n1. Search for relevant job opportunities\n2. Analyze job requirements and match them with candidate skills\n3. Identify high-potential job matches\n4. Provide detailed job information to the Content Writer\n\n# Process Workflow\n\n1. Use JobSearcher tool to find relevant job opportunities\n2. Use JobAnalyzer tool to evaluate job requirements against candidate skills\n3. Forward promising opportunities to the Content Writer for document customization\n4. Track search results and maintain job match history ",
+        "metadata": {},
+        "model": "gpt-3.5-turbo",
+        "name": "Job Prospector",
+        "object": "assistant",
+        "tools": [
+            {
+                "function": {
+                    "name": "JobSearcher",
+                    "description": "Tool for searching job opportunities.",
+                    "parameters": {
+                        "properties": {
+                            "keywords": {
+                                "description": "Keywords to search for in job titles and descriptions",
+                                "title": "Keywords",
+                                "type": "string"
+                            },
+                            "location": {
+                                "default": "",
+                                "description": "Location to search for jobs",
+                                "title": "Location",
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "keywords"
+                        ],
+                        "type": "object"
+                    },
+                    "strict": false
+                },
+                "type": "function"
+            },
+            {
+                "function": {
+                    "name": "JobAnalyzer",
+                    "description": "Tool for analyzing job requirements and matching with candidate skills.",
+                    "parameters": {
+                        "properties": {
+                            "job_description": {
+                                "description": "Job description to analyze",
+                                "title": "Job Description",
+                                "type": "string"
+                            },
+                            "candidate_skills": {
+                                "description": "List of candidate's skills",
+                                "items": {},
+                                "title": "Candidate Skills",
+                                "type": "array"
+                            }
+                        },
+                        "required": [
+                            "candidate_skills",
+                            "job_description"
+                        ],
+                        "type": "object"
+                    },
+                    "strict": false
+                },
+                "type": "function"
+            },
+            {
+                "function": {
+                    "name": "SendMessage",
+                    "description": "Correctly extracted `SendMessage` with all the required parameters with correct types",
+                    "parameters": {
+                        "$defs": {
+                            "recipient": {
+                                "const": "Content Writer",
+                                "enum": [
+                                    "Content Writer"
+                                ],
+                                "title": "recipient",
+                                "type": "string"
+                            }
+                        },
+                        "properties": {
+                            "recipient": {
+                                "allOf": [
+                                    {
+                                        "$ref": "#/$defs/recipient"
+                                    }
+                                ],
+                                "description": "Content Writer: Customizes and manages application documents\n"
+                            },
+                            "my_primary_instructions": {
+                                "description": "Please repeat your primary instructions step-by-step, including both completed and the following next steps that you need to perform. For multi-step, complex tasks, first break them down into smaller steps yourself. Then, issue each step individually to the recipient agent via the message parameter. Each identified step should be sent in a separate message. Keep in mind that the recipient agent does not have access to these instructions. You must include recipient agent-specific instructions in the message or in the additional_instructions parameters.",
+                                "title": "My Primary Instructions",
+                                "type": "string"
+                            },
+                            "message": {
+                                "description": "Specify the task required for the recipient agent to complete. Focus on clarifying what the task entails, rather than providing exact instructions. Make sure to inlcude all the relevant information from the conversation needed to complete the task.",
+                                "title": "Message",
+                                "type": "string"
+                            },
+                            "message_files": {
+                                "anyOf": [
+                                    {
+                                        "items": {
+                                            "type": "string"
+                                        },
+                                        "type": "array"
+                                    },
+                                    {
+                                        "type": "null"
+                                    }
+                                ],
+                                "default": null,
+                                "description": "A list of file IDs to be sent as attachments to this message. Only use this if you have the file ID that starts with 'file-'.",
+                                "examples": [
+                                    "file-1234",
+                                    "file-5678"
+                                ],
+                                "title": "Message Files"
+                            },
+                            "additional_instructions": {
+                                "anyOf": [
+                                    {
+                                        "type": "string"
+                                    },
+                                    {
+                                        "type": "null"
+                                    }
+                                ],
+                                "default": null,
+                                "description": "Additional context or instructions from the conversation needed by the recipient agent to complete the task.",
+                                "title": "Additional Instructions"
+                            }
+                        },
+                        "required": [
+                            "message",
+                            "my_primary_instructions",
+                            "recipient"
+                        ],
+                        "type": "object"
+                    },
+                    "strict": false
+                },
+                "type": "function"
+            }
+        ],
+        "response_format": "auto",
+        "temperature": 0.7,
+        "tool_resources": {
+            "code_interpreter": null,
+            "file_search": null
+        },
+        "top_p": 1.0
+    },
+    {
+        "id": "asst_mMkrw7sGEgVadS8KgWNdUV5n",
+        "created_at": 1736888676,
+        "description": "Customizes and manages application documents",
+        "instructions": "agency_manifesto.md\n\n# Content Writer Role\n\nThe Content Writer is responsible for creating, managing, and delivering customized application documents. This includes document creation, review, delivery, and tracking application status.\n\n# Goals\n\n1. Create customized resumes and cover letters\n2. Review and approve documents for quality\n3. Handle document delivery and communication\n4. Track application status and maintain records\n\n# Process Workflow\n\n1. Receive job opportunities from Job Prospector\n2. Use ResumeEditor tool to customize resume for each opportunity\n3. Use CoverLetterEditor tool to create tailored cover letters\n4. Review and approve final documents\n5. Handle document delivery and track application status\n6. Maintain organized records of all applications ",
+        "metadata": {},
+        "model": "gpt-3.5-turbo",
+        "name": "Content Writer",
+        "object": "assistant",
+        "tools": [
+            {
+                "function": {
+                    "name": "ResumeEditor",
+                    "description": "Tool for customizing resumes based on job requirements.",
+                    "parameters": {
+                        "properties": {
+                            "job_title": {
+                                "description": "Title of the job position",
+                                "title": "Job Title",
+                                "type": "string"
+                            },
+                            "company_name": {
+                                "description": "Name of the company",
+                                "title": "Company Name",
+                                "type": "string"
+                            },
+                            "key_requirements": {
+                                "description": "List of key job requirements",
+                                "items": {},
+                                "title": "Key Requirements",
+                                "type": "array"
+                            }
+                        },
+                        "required": [
+                            "company_name",
+                            "job_title",
+                            "key_requirements"
+                        ],
+                        "type": "object"
+                    },
+                    "strict": false
+                },
+                "type": "function"
+            },
+            {
+                "function": {
+                    "name": "CoverLetterEditor",
+                    "description": "Tool for creating customized cover letters.",
+                    "parameters": {
+                        "properties": {
+                            "job_title": {
+                                "description": "Title of the job position",
+                                "title": "Job Title",
+                                "type": "string"
+                            },
+                            "company_name": {
+                                "description": "Name of the company",
+                                "title": "Company Name",
+                                "type": "string"
+                            },
+                            "company_info": {
+                                "description": "Information about the company",
+                                "title": "Company Info",
+                                "type": "string"
+                            },
+                            "key_requirements": {
+                                "description": "List of key job requirements",
+                                "items": {},
+                                "title": "Key Requirements",
+                                "type": "array"
+                            }
+                        },
+                        "required": [
+                            "company_info",
+                            "company_name",
+                            "job_title",
+                            "key_requirements"
+                        ],
+                        "type": "object"
+                    },
+                    "strict": false
+                },
+                "type": "function"
+            }
+        ],
+        "response_format": "auto",
+        "temperature": 0.7,
+        "tool_resources": {
+            "code_interpreter": null,
+            "file_search": null
+        },
+        "top_p": 1.0
+    }
+]
